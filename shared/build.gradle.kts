@@ -45,4 +45,20 @@ android {
     defaultConfig {
         minSdk = 28
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    //MVVM Moko
+    commonMainApi("dev.icerock.moko:mvvm-core:0.16.1")
+
+    //Koin DI
+    commonMainApi("io.insert-koin:koin-core:3.4.2")
+    //commonMainApi("io.insert-koin:koin-ktor:3.4.0")
+
+    //Ktor
+    commonMainApi("io.ktor:ktor-client-core:2.3.2")
 }
