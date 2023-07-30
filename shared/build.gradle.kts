@@ -1,13 +1,14 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("io.realm.kotlin") version "1.10.0"
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     targetHierarchy.default()
 
-    android {
+    android() {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
@@ -61,4 +62,7 @@ dependencies {
 
     //Ktor
     commonMainApi("io.ktor:ktor-client-core:2.3.2")
+
+    //Realm
+    commonMainApi("io.realm.kotlin:library-base:1.10.0")
 }
