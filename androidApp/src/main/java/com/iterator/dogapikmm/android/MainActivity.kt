@@ -1,40 +1,22 @@
 package com.iterator.dogapikmm.android
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.iterator.dogapikmm.Greeting
+import androidx.lifecycle.ViewModelProvider
+import com.iterator.comicon.android.databinding.MainActivityBinding
+import com.iterator.comicon.presentation.MainViewModel
+import dev.icerock.moko.mvvm.MvvmActivity
+import dev.icerock.moko.mvvm.createViewModelFactory
 
-class MainActivity : ComponentActivity() {
+class MainActivity : MvvmActivity<MainActivityBinding, MainViewModel>() {
+    override val layoutId: Int = R.layout.main_activity
+    override val viewModelVariableId: Int = BR.viewModel
+    override val viewModelClass: Class<MainViewModel> = MainViewModel::class.java
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MyApplicationTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    GreetingView(Greeting().greet())
-                }
-            }
-        }
-    }
-}
 
-@Composable
-fun GreetingView(text: String) {
-    Text(text = text)
-}
-
-@Preview
-@Composable
-fun DefaultPreview() {
-    MyApplicationTheme {
-        GreetingView("Hello, Android!")
+        viewModel.example1()
     }
-}
+
+    override fun viewModelFactory(): ViewModelProvider.Factory {
+        return createViewModelFactory { MainViewModel() }
+    }
